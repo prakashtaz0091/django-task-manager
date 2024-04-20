@@ -1,0 +1,31 @@
+{% extends 'day7/base.html' %} {% load static %} {% block title %} Task Manager {% endblock %} {% block links %}
+<link rel="stylesheet" href="{% static 'day7/css/index.css' %}" /> {% endblock %} {% block content %} <nav>
+    <h1>Welcome , {{ user.username|capfirst }}</h1>
+    <a href="{% url 'day7:logout_view' %}" >Logout</a>
+</nav>
+<main>
+    <div class="add-task">
+        <h3>Add Task</h3>
+        <form action="" method="post"> {% csrf_token %} {{ add_task_form.as_ul }} <li class="button">
+                <input type="submit" value="Add Task" />
+            </li>
+        </form>
+    </div>
+    <div class="tasks">
+        <h1>Tasks</h1>
+        <a href="{% url 'day7:order_by_date' %}">Order by deadline</a>
+        <form action="/search">
+            <input type="text" name="search_text">
+            <input type="submit" value="Search">
+            
+        </form>
+        <hr> {% if tasks %} {% for task in tasks %} <div class="task">
+            <h2>{{ task.title }}</h2>
+            <p>{{ task.desc }}</p>
+            <p>Task Deadline : {{ task.deadline }}</p>
+            <p>Task Status : {{ task.get_status_display }}</p>
+            <a href="{% url 'day7:update_task' task.id  %}">Update</a>
+            <a href="{% url 'day7:delete_task' task.id  %}">Delete</a>
+        </div> {% endfor %} {% else %} There are no any tasks currently {% endif %}
+    </div>
+</main> {% endblock %}

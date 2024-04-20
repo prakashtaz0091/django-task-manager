@@ -1,0 +1,21 @@
+{% extends 'day7/base.html' %}
+{% load static %}
+{% block title %}
+  Login Page
+{% endblock %}
+{% block links %}
+  <link rel="stylesheet" href="{% static 'day7/css/login_form.css' %}" />
+{% endblock %}
+{% block content %}
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ login_form.as_ul }}
+    <li class="button">
+      <input type="submit" value="Login" />
+    </li>
+
+    {% if error_message %}
+      {{ error_message }}
+    {% endif %}
+  </form>
+{% endblock %}

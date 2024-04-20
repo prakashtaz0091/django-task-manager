@@ -1,0 +1,31 @@
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+/media
+/static
+/migrations/*
+
+# Secret key file (if using a separate file)
+secret_key.txt
+
+# Python #
+*.pyc
+*.pyo
+*.pyd
+*.py~
+
+# Virtual environment #
+venv/
+.env
+
+# IDEs #
+.vscode/
+.idea/
+
+# Dependency directories #
+pip-wheel-metadata/
+
